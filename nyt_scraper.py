@@ -1,8 +1,9 @@
 import requests
 import pandas as pd
-
+import os
+import requests
 # Votre clé API du New York Times
-api_key = 'tIQYTafScTnLa8kSEiRtureP3RYX8A50'
+api_key = os.getenv('NYT_API_KEY')
 
 # Fonction pour récupérer les articles avec pagination
 def fetch_articles(query, api_key, page=0, max_pages=1000):
