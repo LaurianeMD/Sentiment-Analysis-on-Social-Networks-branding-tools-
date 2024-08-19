@@ -10,7 +10,7 @@ API_BASE_URL = "http://localhost:8000"
 background_image = "bgr.jpg"
 
 # Disposition en colonnes pour placer l'image à gauche ou à droite
-col1, col2 = st.columns([50, 100])  # Ajustez les valeurs pour modifier la largeur relative des colonnes
+col1, col2 = st.columns([20, 20])  # Ajustez les valeurs pour modifier la largeur relative des colonnes
 
 with col1:  # Image dans la colonne de gauche
     try:
