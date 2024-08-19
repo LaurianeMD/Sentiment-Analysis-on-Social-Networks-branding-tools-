@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-dotenv
+boto3
+sqlalchemy
+psycopg2
+pandas
+transformers
+joblib
+streamlit
+psycopg2-binary
+matplotlib
