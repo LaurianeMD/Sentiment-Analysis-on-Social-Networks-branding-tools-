@@ -1,27 +1,3 @@
-# from fastapi import APIRouter, HTTPException, Depends
-# from sqlalchemy.orm import Session
-# from app.models import Article
-# from app.database import get_db
-# from app.schemas import ArticleCreate, ArticleResponse
-
-# router = APIRouter()
-
-# @router.get("/articles/{article_id}", response_model=ArticleResponse)
-# def read_article(article_id: int, db: Session = Depends(get_db)):
-#     article = db.query(Article).filter(Article.id == article_id).first()
-#     if article is None:
-#         raise HTTPException(status_code=404, detail="Article not found")
-#     return article
-
-# @router.post("/articles/", response_model=ArticleResponse)
-# def create_article(article: ArticleCreate, db: Session = Depends(get_db)):
-#     db_article = Article(**article.dict())
-#     db.add(db_article)
-#     db.commit()
-#     db.refresh(db_article)
-#     return db_article
-
-
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import or_

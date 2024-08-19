@@ -4,20 +4,31 @@ import altair as alt
 import pandas as pd
 from PIL import Image
 
-API_BASE_URL = "http://localhost:8000"
-
-# Charger l'image
-background_image = "bgr.jpg"
+# Chargement du fichier CSS
+st.markdown(
+    """
+    <style>
+    .background {
+        background-image: url('bgr.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh; 
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Disposition en colonnes pour placer l'image à gauche ou à droite
 col1, col2 = st.columns([20, 20])  # Ajustez les valeurs pour modifier la largeur relative des colonnes
 
 with col1:  # Image dans la colonne de gauche
-    try:
-        img = Image.open(background_image)
-        st.image(img, use_column_width=True)
-    except FileNotFoundError:
-        st.error(f"L'image {background_image} n'a pas été trouvée.")
+    st.write("")  # Placeholder pour aligner avec le CSS
 
 with col2:  # Contenu de l'application dans la colonne de droite
     # Titre de l'application
@@ -28,7 +39,7 @@ with col2:  # Contenu de l'application dans la colonne de droite
 
     def fetch_articles(query):
         try:
-            response = requests.get(f"{API_BASE_URL}/articles", params={"query": query})
+            response = requests.get(f"http://localhost:8000/articles", params={"query": query})
             response.raise_for_status()
             return response.json()
         except requests.exceptions.HTTPError as http_err:
@@ -91,7 +102,7 @@ with col2:  # Contenu de l'application dans la colonne de droite
             if not title or not content:
                 st.error("Title and content cannot be empty.")
                 return None
-            response = requests.post(f"{API_BASE_URL}/analyze", json={"title": title, "content": content})
+            response = requests.post(f"http://localhost:8000/analyze", json={"title": title, "content": content})
             response.raise_for_status()
             return response.json()
         except requests.exceptions.HTTPError as http_err:
