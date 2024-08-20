@@ -8,5 +8,5 @@ pandas
 transformers
 joblib
 streamlit
-psycopg2-binary
+# psycopg2-binary
 matplotlib
