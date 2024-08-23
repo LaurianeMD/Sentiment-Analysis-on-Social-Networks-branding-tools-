@@ -4,6 +4,8 @@ import nltk
 import string
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+
 
 # Télécharger les ressources nécessaires de NLTK lors de la première exécution
 nltk.download('punkt', quiet=True)
