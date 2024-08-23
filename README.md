@@ -3,6 +3,7 @@ Sentiment Analysis on Social Networks (branding tools)
 
 
 Sentiment-Analysis-on-Social-Networks-branding-tools/
+'''
 ├── .env                       # Variables d'environnement
 ├── .gitignore                 # Ignorer les fichiers/dossiers spécifiques
 ├── app/
@@ -15,4 +16,6 @@ Sentiment-Analysis-on-Social-Networks-branding-tools/
 │   ├── schemas.py             # Schémas Pydantic pour la validation des données
 ├── requirements.txt           # Dépendances du projet
 ├── sentiment_topic_analysis.py# Script principal pour l'analyse de sentiment et de sujet
-└── streamlit_app.py           # Interface utilisateur Streamlit
+└── streamlit_app.py           # Interface utilisateur Streamlit    
+'''
+
