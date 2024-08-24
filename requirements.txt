@@ -27,10 +27,10 @@ uvicorn
 sqlalchemy
 psycopg2-binary
 python-dotenv
-transformers
+# transformers
 nltk
 requests
 pydantic
-torch
+# torch
 tensorflow
-streamlit
+# streamlit
