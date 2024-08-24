@@ -1,16 +1,27 @@
+# # fastapi
+# # uvicorn
+# # # python-dotenv
+# # boto3
+# # sqlalchemy
+# # # psycopg2
+# # pandas
+# # transformers
+# # joblib
+# # streamlit
+# # # psycopg2-binary
+# # matplotlib
+
 # fastapi
 # uvicorn
-# # python-dotenv
-# boto3
 # sqlalchemy
-# # psycopg2
-# pandas
+# psycopg2-binary
+# python-dotenv
 # transformers
-# joblib
-# streamlit
-# # psycopg2-binary
-# matplotlib
-
+# nltk
+# requests
+# pydantic
+# torch
+# tensorflow
 fastapi
 uvicorn
 sqlalchemy
@@ -22,3 +33,4 @@ requests
 pydantic
 torch
 tensorflow
+streamlit
