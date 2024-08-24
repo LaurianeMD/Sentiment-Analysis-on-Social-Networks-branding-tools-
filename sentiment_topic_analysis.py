@@ -464,34 +464,71 @@
 #         conn.close()
 
 
+# # sentiment_topic_analysis.py
+
+# from transformers import pipeline
+# from utils import clean_text
+
+# # Charger les modèles de traitement du langage
+# sentiment_analyzer = pipeline(
+#     "sentiment-analysis",
+#     model="distilbert-base-uncased-finetuned-sst-2-english"
+# )
+
+# topic_classifier = pipeline(
+#     "zero-shot-classification",
+#     model="facebook/bart-large-mnli"
+# )
+
+# CANDIDATE_TOPICS = ['politics', 'health', 'business', 'technology', 'sports', 'entertainment', 'science', 'education']
+
+# def analyze_sentiment(text: str) -> str:
+#     cleaned_text = clean_text(text)
+#     if not cleaned_text:
+#         return "Neutral"
+#     result = sentiment_analyzer(cleaned_text)[0]
+#     return result['label']
+
+# def classify_topic(text: str) -> str:
+#     cleaned_text = clean_text(text)
+#     if not cleaned_text:
+#         return "Unknown"
+#     result = topic_classifier(cleaned_text, CANDIDATE_TOPICS)
+#     return result['labels'][0]
+
+
 # sentiment_topic_analysis.py
 
 from transformers import pipeline
-from utils import clean_text
 
-# Charger les modèles de traitement du langage
-sentiment_analyzer = pipeline(
-    "sentiment-analysis",
-    model="distilbert-base-uncased-finetuned-sst-2-english"
-)
-
-topic_classifier = pipeline(
-    "zero-shot-classification",
-    model="facebook/bart-large-mnli"
-)
-
-CANDIDATE_TOPICS = ['politics', 'health', 'business', 'technology', 'sports', 'entertainment', 'science', 'education']
+# Initialiser les pipelines (à faire une seule fois)
+sentiment_pipeline = pipeline("sentiment-analysis")
+topic_pipeline = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
 
 def analyze_sentiment(text: str) -> str:
-    cleaned_text = clean_text(text)
-    if not cleaned_text:
-        return "Neutral"
-    result = sentiment_analyzer(cleaned_text)[0]
-    return result['label']
+    if not text.strip():
+        return "not analyzed"
+    try:
+        result = sentiment_pipeline(text)
+        if result and len(result) > 0:
+            sentiment = result[0]['label']
+            return sentiment
+        else:
+            return "not analyzed"
+    except Exception as e:
+        print(f"Sentiment analysis error: {e}")
+        return "not analyzed"
 
 def classify_topic(text: str) -> str:
-    cleaned_text = clean_text(text)
-    if not cleaned_text:
-        return "Unknown"
-    result = topic_classifier(cleaned_text, CANDIDATE_TOPICS)
-    return result['labels'][0]
+    if not text.strip():
+        return "not categorized"
+    try:
+        result = topic_pipeline(text, candidate_labels=["politics", "health", "sports", "technology"])
+        if result and 'labels' in result:
+            topic = result['labels'][0]  # Choisir le premier label
+            return topic
+        else:
+            return "not categorized"
+    except Exception as e:
+        print(f"Topic classification error: {e}")
+        return "not categorized"
