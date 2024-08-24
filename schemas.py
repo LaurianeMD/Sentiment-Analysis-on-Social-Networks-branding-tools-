@@ -59,6 +59,6 @@ class AnalyzeRequest(BaseModel):
 #     content: str
 #     author: Optional[str] = None
 
-#     class Config:
-#         orm_mode = True
+    # class Config:
+    #     orm_mode = True
 
